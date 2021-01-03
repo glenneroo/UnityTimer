@@ -228,7 +228,22 @@ public class Timer
 
         this._timeElapsedBeforePause = null;
     }
+    
+    /// <summary>
+    /// Restarts a running or paused timer.
+    /// </summary>
+    public void Restart() 
+    {
+        if (this.isDone) 
+        {
+            return;
+        }
 
+        this._timeElapsedBeforePause = null;
+        this._startTime = this.GetWorldTime();
+        this.isCompleted = false;
+    }
+    
     /// <summary>
     /// Get how many seconds have elapsed since the start of this timer's current cycle.
     /// </summary>
