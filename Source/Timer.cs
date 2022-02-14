@@ -230,18 +230,18 @@ public class Timer
     }
     
     /// <summary>
-    /// Restarts a running or paused timer.
+    /// Restart a Timer by Setting the Starttime and LastUpdatetime to Timer.GetWorldTime(). Returns true if it had not Completed, false if the Timer is Completed.
+    /// Thanks to: https://github.com/akbiggs/UnityTimer/issues/15#issuecomment-975916972
     /// </summary>
-    public void Restart() 
+    public bool Restart()
     {
-        if (this.isDone) 
+        if (!this.isCompleted)
         {
-            return;
+            this._startTime = this.GetWorldTime();
+            this._lastUpdateTime = this._startTime;
+            return true;
         }
-
-        this._timeElapsedBeforePause = null;
-        this._startTime = this.GetWorldTime();
-        this.isCompleted = false;
+        return false;
     }
     
     /// <summary>
